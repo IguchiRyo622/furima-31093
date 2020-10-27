@@ -11,8 +11,6 @@
 | last_name_kana  | string | null: false |
 | first_name      | string | null: false |
 | first_name_kana | string | null: false |
-| birth_year      | date   | null: false |
-| birth_mouth     | date   | null: false |
 | birth_day       | date   | null: false |
 
 ### Association
@@ -22,16 +20,16 @@
 
 ## items テーブル
 
-| Column             | Type   | Option      |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| info               | text   | null: false |
-| price              | string | null: false |
-| category           | date   | null: false |
-| item_condition     | date   | null: false |
-| shipping_fee       | date   | null: false |
-| prefecture         | date   | null: false |
-| scheduled_delivery | date   | null: false |
+| Column             | Type    | Option      |
+| ------------------ | ------- | ----------- |
+| name               | string  | null: false |
+| info               | text    | null: false |
+| price              | integer | null: false |
+| category           | integer | null: false |
+| item_condition     | integer | null: false |
+| shipping_fee       | integer | null: false |
+| prefecture         | integer | null: false |
+| scheduled_delivery | integer | null: false |
 
 ### Association
 - belongs_to :user
@@ -56,7 +54,7 @@
 | item   | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :buyer
+- has_one :buyer
 - belongs_to :user
 - belongs_to :item
 
@@ -65,11 +63,11 @@
 | Column        | Type    | Option      |
 | ------------- | ------- | ----------- |
 | postal_cord   | string  | null: false |
-| prefecture    | date    | null: false |
+| prefecture    | integer | null: false |
 | city          | string  | null: false |
 | address       | string  | null: false |
 | building_name | string  |             |
-| phone         | integer | null: false |
+| phone         | string  | null: false |
 
 ### Association
-- has_many :item_user
+- belongs_to :item_user
