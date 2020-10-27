@@ -1,24 +1,75 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| nickname        | string | null: false |
+| email           | string | null: false |
+| password        | string | null: false |
+| last_name       | strung | null: false |
+| last_name_kana  | string | null: false |
+| first_name      | string | null: false |
+| first_name_kana | string | null: false |
+| birth_year      | date   | null: false |
+| birth_mouth     | date   | null: false |
+| birth_day       | date   | null: false |
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :comments
+- has_many :records
 
-* System dependencies
+## items テーブル
 
-* Configuration
+| Column             | Type   | Option      |
+| ------------------ | ------ | ----------- |
+| name               | string | null: false |
+| info               | text   | null: false |
+| price              | string | null: false |
+| category           | date   | null: false |
+| item_condition     | date   | null: false |
+| shipping_fee       | date   | null: false |
+| prefecture         | date   | null: false |
+| scheduled_delivery | date   | null: false |
 
-* Database creation
+### Association
+- belongs_to :user
+- has_many :comments
+- has_many :records
 
-* Database initialization
+## comments テーブル
 
-* How to run the test suite
+| Column  | Type   | Option      |
+| ------- | ------ | ----------- |
+| comment | text   | null: false |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :user
+- belongs_to :item
 
-* Deployment instructions
+## item_users テーブル
 
-* ...
+| Column | Type       | Option                         |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+
+### Association
+- has_one :buyer
+- belongs_to :user
+- belongs_to :item
+
+## buyers
+
+| Column        | Type    | Option      |
+| ------------- | ------- | ----------- |
+| postal_cord   | string  | null: false |
+| prefecture    | date    | null: false |
+| city          | string  | null: false |
+| address       | string  | null: false |
+| building_name | string  |             |
+| phone         | integer | null: false |
+
+### Association
+- belongs_to :record
