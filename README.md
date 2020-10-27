@@ -18,7 +18,7 @@
 ### Association
 - has_many :items
 - has_many :comments
-- has_many :records
+- has_many :item_user
 
 ## items テーブル
 
@@ -36,7 +36,7 @@
 ### Association
 - belongs_to :user
 - has_many :comments
-- has_many :records
+- has_one :item_user
 
 ## comments テーブル
 
@@ -56,7 +56,7 @@
 | item   | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :buyer
+- belongs_to :buyer
 - belongs_to :user
 - belongs_to :item
 
@@ -72,4 +72,4 @@
 | phone         | integer | null: false |
 
 ### Association
-- belongs_to :record
+- has_many :item_user
