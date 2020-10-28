@@ -3,26 +3,23 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  with_options presence: true do
+    validates :nickname
 
-  validates :nickname, presence: true
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
-  validates :password, presence: true,
-                       format: { with: VALID_PASSWORD_REGEX,
-                                 message: 'Include both letters and numbers' }
-  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
-  validates :last_name, presence: true,
-                        format: { with: VALID_NAME_REGEX,
-                                  message: 'Full-width characters' }
-  validates :first_name, presence: true,
-                         format: { with: VALID_NAME_REGEX,
-                                   message: 'Full-width characters' }
-  VALID_KANA_REGEX = /\A[ァ-ヴ]+\z/.freeze
-  validates :last_name_kana, presence: true,
-                             format: { with: VALID_KANA_REGEX,
-                                       message: 'Full-width katakana characters' }
-  validates :first_name_kana, presence: true,
-                              format: { with: VALID_KANA_REGEX,
-                                        message: 'Full-width katakana characters' }
+    with_options format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'Include both letters and numbers' } do
+      validates :password
+    end
 
-  validates :birth_day, presence: true
+    with_options format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' } do
+      validates :last_name
+      validates :first_name
+    end
+
+    with_options format: {with: /\A[ァ-ヴ]+\z/, message: 'Full-width katakana characters'} do
+      validates :last_name_kana
+      validates :first_name_kana
+    end
+
+    validates :birth_day
+  end
 end
