@@ -27,9 +27,9 @@ describe User do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it 'emailに@が含まれないと登録できない' do
-        @user.email = "testgmail"
+        @user.email = 'testgmail'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it '重複したemailが存在する場合登録できない' do
         @user.save
