@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash [:category, :condition, :fee, :prefecture]
+  belongs_to_active_hash [:category, :condition, :fee, :prefecture, :scheduled]
 
   belongs_to :user
   has_one_attached :image
@@ -22,4 +22,5 @@ class Item < ApplicationRecord
     validates :condition_id
     validates :fee_id
     validates :prefecture_id
+    validates :scheduled_id
 end
