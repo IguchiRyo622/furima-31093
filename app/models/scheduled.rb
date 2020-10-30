@@ -5,4 +5,4 @@ class Scheduled < ActiveHash::Base
     { id: 3, name: '2~3日で発送' },
     { id: 4, name: '3~4日で発送' }
   ]
-  end
+end

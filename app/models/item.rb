@@ -20,17 +20,17 @@ class Item < ApplicationRecord
     validates :image
     validates :price
   end
-    validates :category_id, numericality: { other_than: 1, message: 'Select'}
-    validates :condition_id, numericality: { other_than: 1, message: 'Select'}
-    validates :fee_id, numericality: { other_than: 1, message: 'Select'}
-    validates :prefecture_id, numericality: { other_than: 1, message: 'Select'}
-    validates :scheduled_id, numericality: { other_than: 1, message: 'Select'}
-    
-    with_options format: { with: /\A[3-9][0-9]{2}|[3-9][0-9]{3,6}+\z/, message: "Out of setting range" } do
-      validates :price
-    end
+  validates :category_id, numericality: { other_than: 1, message: 'Select' }
+  validates :condition_id, numericality: { other_than: 1, message: 'Select' }
+  validates :fee_id, numericality: { other_than: 1, message: 'Select' }
+  validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
+  validates :scheduled_id, numericality: { other_than: 1, message: 'Select' }
 
-    with_options format: { with: /\A[0-9]+\z/, message: "Half-width number"} do
-      validates :price
-    end
+  with_options format: { with: /\A[3-9][0-9]{2}|[3-9][0-9]{3,6}+\z/, message: 'Out of setting range' } do
+    validates :price
+  end
+
+  with_options format: { with: /\A[0-9]+\z/, message: 'Half-width number' } do
+    validates :price
+  end
 end

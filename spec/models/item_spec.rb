@@ -29,27 +29,27 @@ describe Item do
       it 'カテゴリーが選択されていないと出品できない' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Select")
+        expect(@item.errors.full_messages).to include('Category Select')
       end
       it '商品の状態が選択されていないと出品できない' do
         @item.condition_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition Select")
+        expect(@item.errors.full_messages).to include('Condition Select')
       end
       it '配送料の負担が選択されていないと出品できない' do
         @item.fee_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Fee Select")
+        expect(@item.errors.full_messages).to include('Fee Select')
       end
       it '発送元が選択されていないと出品できない' do
         @item.prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture Select")
+        expect(@item.errors.full_messages).to include('Prefecture Select')
       end
       it '発送までの日数が選択されていないと出品できない' do
         @item.scheduled_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Scheduled Select")
+        expect(@item.errors.full_messages).to include('Scheduled Select')
       end
       it '価格が空だと出品できない' do
         @item.price = ''
@@ -59,17 +59,17 @@ describe Item do
       it '価格の値が範囲外だと出品できない' do
         @item.price = 200
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it '価格が全角だと保存できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it 'ユーザーが紐づいていないとツイートが保存できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
