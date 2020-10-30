@@ -81,8 +81,13 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it '価格の値が範囲外だと出品できない' do
-        @item.price = 200
+      it '価格の値が範囲外(下限)だと出品できない' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
+      end
+      it '価格の値が範囲外(上限)だと出品できない' do
+        @item.price = 100000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Out of setting range')
       end

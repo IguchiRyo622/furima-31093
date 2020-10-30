@@ -29,10 +29,9 @@ class Item < ApplicationRecord
     validates :scheduled_id
   end
 
-  with_options format: { with: /\A[3-9][0-9]{2}|[1-9][0-9]{3,6}+\z/, message: 'Out of setting range' } do
+  with_options format: { with: /\A([3-9][0-9]{2}|[1-9][0-9]{3,7})+\z/, message: 'Out of setting range' } do
     validates :price
   end
-
   with_options format: { with: /\A[0-9]+\z/, message: 'Half-width number' } do
     validates :price
   end
