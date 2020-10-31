@@ -21,7 +21,7 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  with_options numericality: { other_than: 1 , message: 'Select'}  do
+  with_options numericality: { other_than: 1, message: 'Select' } do
     validates :category_id
     validates :condition_id
     validates :fee_id
