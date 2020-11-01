@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :scheduled
 
   belongs_to :user
+  has_one :item_user
   has_one_attached :image
 
   with_options presence: true do
