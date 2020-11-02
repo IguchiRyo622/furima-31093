@@ -44,6 +44,7 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:item).permit(:name, :info, :price, :category_id, :condition_id, :fee_id, :prefecture_id, :scheduled_id, :image).merge(user_id: current_user.id)
   end
@@ -53,8 +54,6 @@ class ItemsController < ApplicationController
   end
 
   def redirect_user
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
+    redirect_to new_user_session_path unless user_signed_in?
   end
 end
