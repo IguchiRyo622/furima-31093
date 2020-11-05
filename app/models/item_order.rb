@@ -1,9 +1,9 @@
 class ItemOrder
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture, :city, :address, :building_name, :phone, :user_id, :item_id, :item_user_id
+  attr_accessor :postal_cord, :prefecture, :city, :address, :building_name, :phone, :user_id, :item_id, :item_user_id
 
   with_options presence: true do
-    validate postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validate postal_cord, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validate prefecture, numericality: { other_than: 1, message: "can't be blank" }
     validate city
     validate address
