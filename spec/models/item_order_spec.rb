@@ -28,7 +28,7 @@ RSpec.describe ItemOrder, type: :model do
       it '郵便番号にハイフン(-)がないと購入できない' do
         @item_order.postal_code = '1234567'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Postal code Include hyphen(-)")
+        expect(@item_order.errors.full_messages).to include('Postal code Include hyphen(-)')
       end
       it '都道府県が選択されていないと購入できない' do
         @item_order.prefecture_id = ''
@@ -58,12 +58,12 @@ RSpec.describe ItemOrder, type: :model do
       it '電話番号に全角だと購入できない' do
         @item_order.phone = '０００００００００００'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Phone number Input only number")
+        expect(@item_order.errors.full_messages).to include('Phone number Input only number')
       end
       it '電話番号にハイフン(-)が入ると購入できない' do
         @item_order.phone = '000-0000-0000'
         @item_order.valid?
-        expect(@item_order.errors.full_messages).to include("Phone number Input only number")
+        expect(@item_order.errors.full_messages).to include('Phone number Input only number')
       end
     end
   end
