@@ -8,7 +8,7 @@ class ItemOrder
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :address
-    validates :phone, format: {with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters."}
+    validates :phone, format: {with: /\A[0-9]+\z/, message: "number Input only number"}
   end
 
   def save
