@@ -1,4 +1,4 @@
-class Order
+class ItemOrder
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture, :city, :address, :building_name, :phone, :user_id, :item_id, :item_user_id
 
