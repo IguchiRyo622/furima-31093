@@ -91,12 +91,15 @@
     <% else %>
       <p>コメントの投稿には新規登録・ログインが必要です</p>
     <% end %>
-    <li class="comments">
+    <li class="comment_list">
     <% if @comments %>
       <% @comments.each do |comment| %>
-        <div>
+        <div class="comments">
           <%= comment.user.nickname %>:
           <%= comment.comment %>
+        </div>
+        <div class="comment_time">
+          <%= comment.created_at.to_s(:datetime_jp) %>
         </div>
       <% end %>
     <% end %>
