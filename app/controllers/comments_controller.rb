@@ -1,10 +1,17 @@
 class CommentsController < ApplicationController
   def create
-    Comment.create(comment_params)
-    redirect_to item_path(@item.id)
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      redirect_to item_path(@comment.item)
+    else
+      @item = @comment.item
+      @comments = @item.comments
+      render "items/show"
+    end
   end
 
   private
   def comment_params
-    params.require(:comment).permit(:text).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:comment).permit(:comment).merge(user_id: current_user.id, item_id: params[:item_id])
+  end
 end

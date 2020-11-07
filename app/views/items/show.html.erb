@@ -81,8 +81,8 @@
   
   <div class="comment-box">
     <% if user_signed_in? %>
-      <%= form_with model:[@comment,@item], url:item_commnts_path(@item), local: true do |f| %>
-        <%= f.text_area :text, class:"comment-text" %>
+      <%= form_with model:[@item, @comment], local: true do |f| %>
+        <%= f.text_area :comment, class:"comment-text" %>
         <%= f.label :text, "相手のことを考え丁寧なコメントを心がけましょう。", class:"comment-warn" %><br>
         <%= f.label :text, "不快な言葉遣いなどは利用制限や退会処分となることがあります。", class:"comment-warn"%>
         <%= f.submit "submit", class:"comment-btn" %>
@@ -93,9 +93,8 @@
     <% end %>
     <% if @comments %>
       <% @comments.each do |comment| %>
-        <p>
-          <%= comment.text %>
-        <p>
+          <%= comment.user.nickname %>
+          <%= comment.comment %>
       <% end %>
     <% end %>
   </div>
