@@ -91,12 +91,16 @@
     <% else %>
       <p>コメントの投稿には新規登録・ログインが必要です</p>
     <% end %>
+    <li class="comments">
     <% if @comments %>
       <% @comments.each do |comment| %>
-          <%= comment.user.nickname %>
+        <div>
+          <%= comment.user.nickname %>:
           <%= comment.comment %>
+        </div>
       <% end %>
     <% end %>
+    </li>
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">

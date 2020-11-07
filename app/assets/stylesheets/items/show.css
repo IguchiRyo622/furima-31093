@@ -139,6 +139,12 @@
 
 
 /* /商品の概要 */
+.comments {
+  font-size: 20px;
+  text-align: left;
+  margin-left: 35%;
+  list-style: none;
+}
 
 .comment-box {
   width: 40vw;
@@ -187,7 +193,6 @@
   display: flex;
   justify-content: space-between;
   width: 50vw;
-
 }
 
 .change-item-btn {
