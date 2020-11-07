@@ -81,12 +81,16 @@
   
   <div class="comment-box">
     <% if user_signed_in? %>
-      <%= form_with model:[@item, @comment], local: true do |f| %>
-        <%= f.text_area :comment, class:"comment-text" %>
-        <%= f.label :text, "相手のことを考え丁寧なコメントを心がけましょう。", class:"comment-warn" %><br>
-        <%= f.label :text, "不快な言葉遣いなどは利用制限や退会処分となることがあります。", class:"comment-warn"%>
-        <%= f.submit "submit", class:"comment-btn" %>
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+      <% if @item.item_user.nil?%>
+        <%= form_with model:[@item, @comment], local: true do |f| %>
+          <%= f.text_area :comment, class:"comment-text" %>
+          <%= f.label :text, "相手のことを考え丁寧なコメントを心がけましょう。", class:"comment-warn" %><br>
+          <%= f.label :text, "不快な言葉遣いなどは利用制限や退会処分となることがあります。", class:"comment-warn"%>
+          <%= f.submit "submit", class:"comment-btn" %>
+          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+        <% end %>
+      <% else %>
+        <p>売り切れのためコメントできません</p>
       <% end %>
     <% else %>
       <p>コメントの投稿には新規登録・ログインが必要です</p>
