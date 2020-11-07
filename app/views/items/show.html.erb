@@ -78,20 +78,32 @@
     </div>
   </div>
   <%# /商品の概要 %>
-
+  
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
+    <% if user_signed_in? %>
+      <%= form_with model:[@item, @comment], local: true do |f| %>
+        <%= f.text_area :comment, class:"comment-text" %>
+        <%= f.label :text, "相手のことを考え丁寧なコメントを心がけましょう。", class:"comment-warn" %><br>
+        <%= f.label :text, "不快な言葉遣いなどは利用制限や退会処分となることがあります。", class:"comment-warn"%>
+        <%= f.submit "submit", class:"comment-btn" %>
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+      <% end %>
+    <% else %>
+      <p>コメントの投稿には新規登録・ログインが必要です</p>
+    <% end %>
+    <li class="comment_list">
+    <% if @comments %>
+      <% @comments.each do |comment| %>
+        <div class="comments">
+          <%= comment.user.nickname %>:
+          <%= comment.comment %>
+        </div>
+        <div class="comment_time">
+          <%= comment.created_at.to_s(:datetime_jp) %>
+        </div>
+      <% end %>
+    <% end %>
+    </li>
   </div>
   <div class="links">
     <a href="#" class="change-item-btn">
