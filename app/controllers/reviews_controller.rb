@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def create
-    @review = Review.new(comment_params)
+    @review = Review.new(review_params)
     if @review.save
       redirect_to item_path(@review.item)
     else

@@ -81,7 +81,7 @@
   
   <div class="comment-box">
     <% if user_signed_in? %>
-      <% if @item.item_user.nil?%>
+      <% if @item.item_user.nil? %>
         <%= form_with model:[@item, @comment], local: true do |f| %>
           <%= f.text_area :comment, class:"comment-text" %>
           <%= f.label :text, "相手のことを考え丁寧なコメントを心がけましょう。", class:"comment-warn" %><br>
@@ -89,18 +89,37 @@
           <%= f.submit "submit", class:"comment-btn" %>
           <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <% end %>
-      <% else %>
+      <% elsif @item.item_user.user_id == current_user.id || @item.user_id == current_user.id %>
+        <%= form_with model:[@item, @review], lical: true do |f| %>
+          <%= f.text_area :review, class:"comment-text" %>
+          <%= f.label :text, "商品受け取り後、取引評価をしましょう!" %>
+          <%= f.submit "submit", class:"comment-btn" %>
+          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20" ,height:"25" %>
+        <% end %>
+      <% else @item.item_user.id != current_user.id %>
         <p>売り切れのためコメントできません</p>
       <% end %>
     <% else %>
-      <p>コメントの投稿には新規登録・ログインが必要です</p>
+        <p>コメントの投稿には新規登録・ログインが必要です</p>
     <% end %>
+
     <li class="comment_list">
     <% if @comments %>
       <% @comments.each do |comment| %>
         <div class="comments">
           <%= comment.user.nickname %>:
           <%= comment.comment %>
+        </div>
+        <div class="comment_time">
+          <%= comment.created_at.to_s(:datetime_jp) %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if @reviews %>
+      <% @reviews.each do |review| %>
+        <div class="comments">
+          <%= review.user.nickname %>:
+          <%= review.review %>
         </div>
         <div class="comment_time">
           <%= comment.created_at.to_s(:datetime_jp) %>
