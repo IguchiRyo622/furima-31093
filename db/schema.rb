@@ -82,10 +82,12 @@ ActiveRecord::Schema.define(version: 2020_11_09_025954) do
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "item_id"
     t.bigint "item_user_id"
     t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_reviews_on_item_id"
     t.index ["item_user_id"], name: "index_reviews_on_item_user_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -116,5 +118,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_025954) do
   add_foreign_key "item_users", "users"
   add_foreign_key "items", "users"
   add_foreign_key "reviews", "item_users"
+  add_foreign_key "reviews", "items"
   add_foreign_key "reviews", "users"
 end
