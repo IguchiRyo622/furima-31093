@@ -35,6 +35,7 @@
 
 ### Association
 - belongs_to :user
+- has_many :reviews
 - has_many :comments
 - has_one :item_user
 
@@ -87,4 +88,5 @@
 
 ### Association
 - belongs_to :item_user
-- belomgs_to :user
+- belongs_to :user
+- belongs_to :item
