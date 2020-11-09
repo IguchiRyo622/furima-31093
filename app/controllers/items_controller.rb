@@ -21,6 +21,8 @@ class ItemsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @item.comments
+    @review = Review.new
+    @reviews = @item.reviews
   end
 
   def edit
