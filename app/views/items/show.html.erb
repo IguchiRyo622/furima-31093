@@ -78,7 +78,8 @@
     </div>
   </div>
   <%# /商品の概要 %>
-  
+  <%# コメント、レビュー機能%>
+  <%# 商品、ユーザーの状態で条件分岐を行う%>
   <div class="comment-box">
     <% if user_signed_in? %>
       <% if @item.item_user.nil? %>
@@ -90,9 +91,10 @@
           <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <% end %>
       <% elsif @item.item_user.user_id == current_user.id || @item.user_id == current_user.id %>
-        <%= form_with model:[@item, @review], lical: true do |f| %>
+        <%= form_with model:[@item, @review], local: true do |f| %>
           <%= f.text_area :review, class:"comment-text" %>
-          <%= f.label :text, "商品受け取り後、取引評価をしましょう!" %>
+          <%= f.label :text, "商品受け取り後、取引評価をしましょう!" %><br>
+          <%= f.label :text, "不快な言葉遣いなどは利用制限や退会処分となることがあります。", class:"comment-warn"%>
           <%= f.submit "submit", class:"comment-btn" %>
           <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20" ,height:"25" %>
         <% end %>
@@ -102,9 +104,11 @@
     <% else %>
         <p>コメントの投稿には新規登録・ログインが必要です</p>
     <% end %>
-
+    <%# 商品、ユーザーの状態で条件分岐を行う%>
+    <%# コメント、レビューが書かれたら表示%>
     <li class="comment_list">
-    <% if @comments %>
+    <% if @comments.present? %>
+      <div style="color:#3CCACE;">コメント</div>
       <% @comments.each do |comment| %>
         <div class="comments">
           <%= comment.user.nickname %>:
@@ -115,19 +119,23 @@
         </div>
       <% end %>
     <% end %>
-    <% if @reviews %>
+    <% if @reviews.present? %>
+      <div style="color:#3CCACE;">取引後コメント</div>
       <% @reviews.each do |review| %>
         <div class="comments">
           <%= review.user.nickname %>:
           <%= review.review %>
         </div>
         <div class="comment_time">
-          <%= comment.created_at.to_s(:datetime_jp) %>
+          <%= review.created_at.to_s(:datetime_jp) %>
         </div>
       <% end %>
     <% end %>
     </li>
+    <%# コメント、レビューが書かれたら表示%>
   </div>
+  <%# コメント、レビュー機能%>
+
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
