@@ -39,4 +39,13 @@ class Item < ApplicationRecord
   with_options format: { with: /\A[0-9]+\z/, message: 'Half-width number' } do
     validates :price
   end
+
+  def self.search(search)
+    if search != ''
+      Item.where('name LIKE(?)', "%#{search}%")
+      Item.where('info LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 end
