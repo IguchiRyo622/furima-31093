@@ -19,12 +19,12 @@ RSpec.describe Review, type: :model do
       it 'user_idが空だとレビューできない' do
         @review.user = nil
         @review.valid?
-        expect(@review.errors.full_messages).to include("User must exist")
+        expect(@review.errors.full_messages).to include('User must exist')
       end
       it 'item_idが空だとレビューできない' do
         @review.item = nil
         @review.valid?
-        expect(@review.errors.full_messages).to include("Item must exist")
+        expect(@review.errors.full_messages).to include('Item must exist')
       end
     end
   end
