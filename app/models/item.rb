@@ -25,7 +25,7 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  with_options numericality: { other_than: 1, message: 'Select' } do
+  with_options numericality: { other_than: 1, message: 'を選択してください' } do
     validates :category_id
     validates :condition_id
     validates :fee_id
@@ -33,10 +33,10 @@ class Item < ApplicationRecord
     validates :scheduled_id
   end
 
-  with_options format: { with: /\A([3-9][0-9]{2}|[1-9][0-9]{3,7})+\z/, message: 'Out of setting range' } do
+  with_options format: { with: /\A([3-9][0-9]{2}|[1-9][0-9]{3,7})+\z/, message: 'は(¥300〜9,999,999)内にしてください' } do
     validates :price
   end
-  with_options format: { with: /\A[0-9]+\z/, message: 'Half-width number' } do
+  with_options format: { with: /\A[0-9]+\z/, message: 'は半角数字で入力してください' } do
     validates :price
   end
 
