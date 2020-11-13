@@ -16,13 +16,11 @@
       <%= link_to image_tag("dl-android.png", class:"google-btn"), "#" %>
     </div>
   </div>
-
-    <%# 商品一覧 %>
   <div class='item-contents'>
-    <h2 class='title'>検索結果</h2>
-    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <h2 class='title'>
+      <%= "#{@user.nickname}さんの出品情報"%>
+    </h2>
     <ul class='item-lists'>
-
       <% @items.each do |item| %>
         <li class='list'>
           <%= link_to item_path(item.id), method: :get do %>
@@ -57,7 +55,7 @@
           <% end %>
         </li>
       <% end %>
-      </ul>
+    </ul>
   </div>
 
   <div class='purchase-btn'>
@@ -71,5 +69,5 @@
       <%= image_tag 'camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
       </a>
     <% end %>
-  </div>
+</div>
 <%= render "shared/footer" %>
