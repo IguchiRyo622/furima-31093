@@ -14,17 +14,17 @@ describe Item do
       it '商品画像が空だと出品できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("出品画像を入力してください")
+        expect(@item.errors.full_messages).to include('出品画像を入力してください')
       end
       it '商品名が空だと出品できない' do
         @item.name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品名を入力してください")
+        expect(@item.errors.full_messages).to include('商品名を入力してください')
       end
       it '商品説明が空だと出品できない' do
         @item.info = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("商品の説明を入力してください")
+        expect(@item.errors.full_messages).to include('商品の説明を入力してください')
       end
       it 'カテゴリーが選択されていないと出品できない' do
         @item.category_id = ''
@@ -79,7 +79,7 @@ describe Item do
       it '価格が空だと出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("販売価格を入力してください")
+        expect(@item.errors.full_messages).to include('販売価格を入力してください')
       end
       it '価格の値が範囲外(下限)だと出品できない' do
         @item.price = 299

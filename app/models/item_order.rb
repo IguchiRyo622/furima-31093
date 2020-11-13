@@ -5,7 +5,7 @@ class ItemOrder
   with_options presence: true do
     validates :token
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}+\z/, message: 'はハイフンを含む必要があります' }
-    validates :prefecture_id, numericality: { other_than: 1, message: "を選択してください" }
+    validates :prefecture_id, numericality: { other_than: 1, message: 'を選択してください' }
     validates :city
     validates :address
     validates :phone, format: { with: /\A[0-9]+\z/, message: 'は数字のみを入力してください' }
