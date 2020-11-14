@@ -16,9 +16,13 @@
       <%= link_to image_tag("dl-android.png", class:"google-btn"), "#" %>
     </div>
   </div>
+  <div class="profile">
+    <div class="template-profile"><%= "#{@user.nickname}さんのプロフィール"%></div>
+  </div>
 
   <div class='item-contents'>
-    <h2 class='title'><%= "#{@user.nickname}さんの出品商品"%></h2>
+    <% if @items.present? %>
+    <h2 class='profile-title'><%= "出品中の商品"%></h2>
     <ul class='item-lists'>
       <% @items.each do |item| %>
         <% if item.item_user.nil? %>
@@ -46,7 +50,8 @@
         <% end %>
       <% end %>
     </ul>
-    <h2 class='title'><%= "取引完了商品"%></h2>
+    <br>
+    <h2 class='profile-title'><%= "取引完了商品"%></h2>
     <ul class='item-lists'>
       <% @items.each do |item| %>
         <% if item.item_user.present? %>
@@ -77,6 +82,11 @@
         <% end %>
       <% end %>
     </ul>
+    <% else %>
+      <div class='item-contents'>
+        <h2 class='title'><%= "出品した商品はありません"%></h2>
+      </div>
+    <% end %>
   </div>
 
   <div class='purchase-btn'>
