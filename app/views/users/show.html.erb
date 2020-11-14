@@ -16,44 +16,65 @@
       <%= link_to image_tag("dl-android.png", class:"google-btn"), "#" %>
     </div>
   </div>
+
   <div class='item-contents'>
-    <h2 class='title'>
-      <%= "#{@user.nickname}さんの出品情報"%>
-    </h2>
+    <h2 class='title'><%= "#{@user.nickname}さんの出品商品"%></h2>
     <ul class='item-lists'>
       <% @items.each do |item| %>
-        <li class='list'>
-          <%= link_to item_path(item.id), method: :get do %>
-          <div class='item-img-content'>
-            <%= image_tag item.image, class: "item-img" %>
-
-            <%if item.item_user.present? %>
+        <% if item.item_user.nil? %>
+            <li class='list'>
+              <%= link_to item_path(item.id), method: :get do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image, class: "item-img" %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.name %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.price %>円<br>
+                  <%= item.fee.name %>
+                </span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+                </div>
+              </div>
+            </div>
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+    <h2 class='title'><%= "取引完了商品"%></h2>
+    <ul class='item-lists'>
+      <% @items.each do |item| %>
+        <% if item.item_user.present? %>
+            <li class='list'>
+              <%= link_to item_path(item.id), method: :get do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image, class: "item-img" %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
-            <% end %>
-
-          </div>
-          <div class='item-info'>
-            <h3 class='item-name'>
-              <%= item.name %>
-            </h3>
-            <div class='item-price'>
-              <span><%= item.price %>円<br>
-              <% if item.fee_id == 2 %>
-                着払い(購入者負担)
-              <% elsif item.fee_id == 3 %>
-                送料込み(出品者負担)
-              <% end %>
-              </span>
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.name %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.price %>円<br>
+                  <%= item.fee.name %>
+                </span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
                 <span class='star-count'>0</span>
+                </div>
               </div>
             </div>
-          </div>
+            </li>
           <% end %>
-        </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
